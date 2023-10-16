@@ -1,0 +1,37 @@
+//? displays a color picker interface using the SketchPicker component and updates the color value in a shared state managed by Valtio
+
+//! COLOR PICKER COMPONENT
+import { SketchPicker } from "react-color";
+//! GLOBAL STATES
+import { useSnapshot } from "valtio";
+import state from "../store";
+
+const ColorPicker = () => {
+  const snap = useSnapshot(state);
+
+  return (
+    <div className="absolute left-full ml-3">
+      <SketchPicker
+        color={snap.color}
+        disableAlpha
+        onChange={(color) => (state.color = color.hex)}
+        presetColors={[
+          "#ccc",
+          "#EFBD4E",
+          "#80C670",
+          "#726DE8",
+          "#353934",
+          "#2CCCE4",
+          "#ff8a65",
+          "#7098DA",
+          "#C19277",
+          "#FF96AD",
+          "#512314",
+          "#5F123D",
+        ]}
+      />
+    </div>
+  );
+};
+
+export default ColorPicker;
